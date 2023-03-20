@@ -1,6 +1,6 @@
 S2MITD-02 IN200
 
-Projet Puissance 4 
+Projet Fourmi de Langton
 
 Membres du groupe :
 
