@@ -31,7 +31,8 @@ def fourmi():
 	
 	
 def play():
-	pass
+	quadrillage(0,0)
+	fourmi()
 	
 def pause():
 	pass
@@ -63,8 +64,6 @@ bou1.grid(column = 2, row = 3)
 bou2 = Button(fen, text = 'next', command = suivant)
 bou2.grid(column = 2, row = 4)
 
-quadrillage(0,0)
-fourmi()
 
 
 
