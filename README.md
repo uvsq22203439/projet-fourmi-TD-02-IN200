@@ -7,6 +7,7 @@ Membres du groupe :
 - Ema Burel
 - Joël Ye
 - Ilyan Lalmassi
+- Elyes Miladi
 
 
 
