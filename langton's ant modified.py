@@ -1,4 +1,3 @@
-
 import tkinter as tk
 import json
 from tkinter import filedialog
@@ -95,7 +94,7 @@ def langtons_ant():
                 ant_row += 1
             else:
                 ant_col -= 1
-            # Vérifier que la fourmi ne sort pas de la grille
+            # Vérifier que la fourmi ne sorte pas de la grille
             if ant_row < 0:
                 ant_row = grid_size - 1
             elif ant_row >= grid_size:
@@ -110,16 +109,16 @@ def langtons_ant():
 
 def reset_langtons_ant():
     global ant_row, ant_col, ant_direction, running, step, back
-    # Reset the grid state to all white
+    # Remet les cases de la grille en blanc 
     for row in range(grid_size):
         for col in range(grid_size):
             states[row][col] = color_white
             canvas.itemconfig(cells[row][col], fill=states[row][col])
-    # Reset the ant position and direction
+    # Reinitialise la position et la direction de la fourmi
     ant_row = grid_size // 2
     ant_col = grid_size // 2
     ant_direction = "up"
-    # Stop the simulation and reset the step mode
+    # Arrete le jeu et reinitialise la variable "step"
     running = False
     step = True
     back = False
@@ -154,7 +153,7 @@ def update_speed(*args):
 speed_scale.config(command=update_speed)
 
 def save_state():
-    # Create a dictionary representing the current state
+    # Créer un dictionnaire qui répertorie les différents états du jeu pour pouvoir sauvegarder une instance
     state_dict = {
         "grid_size": grid_size,
         "states": states,
@@ -162,28 +161,27 @@ def save_state():
         "ant_col": ant_col,
         "ant_direction": ant_direction
     }
-    # Convert the dictionary to a JSON string
+    # Converti le dictionnaire en  JSON
     state_json = json.dumps(state_dict)
-    # Open a file dialog to get the file path to save to
+    # Ouvre l'explorateur de fichier pour enregistrer une partie
     file_path = tk.filedialog.asksaveasfilename(defaultextension=".json")
-    # Write the JSON string to the file
+    # Ecrit la chaine de caractère JSON dansd le fichier 
     with open(file_path, "w") as f:
         f.write(state_json)
 
 def open_instance():
-    # Open a file dialog box for the user to select the saved instance file
+    # Ouvre l'explorateur de fichier pour ouvrir une partie sauvegardée 
     filename = filedialog.askopenfilename(title="Open a saved instance", filetypes=[("JSON files", "*.json")])
 
-    # Load the saved instance data from the selected file
+    # Charge les données d'une partie depuis un fichier enregistré
     with open(filename, "r") as f:
         instance_data = json.load(f)
 
-    # Update the states list and the ant position and direction with the loaded data
+    # Met à jour les variables principales 
     global states, ant_row, ant_col, ant_direction
-    states = instance_data["states"]
-    ant_row, ant_col, ant_direction = instance_data["ant_row"], instance_data["ant_col"], instance_data["ant_direction"]
+    states, ant_row, ant_col, ant_direction = instance_data["states"], instance_data["ant_row"], instance_data["ant_col"], instance_data["ant_direction"]
 
-    # Update the grid on the canvas to match the updated states list
+    # met à jour le canevas pour qu'il corresponde aux nouvelles variables
     for row in range(grid_size):
         for col in range(grid_size):
             canvas.itemconfig(cells[row][col], fill=states[row][col])
@@ -203,6 +201,7 @@ for row in range(grid_size):
         row_cells.append(cell)
     cells.append(row_cells)
 
+# Création et ajout des boutons dans le canevas    
 start_button = tk.Button(root, text="start", command=start_langtons_ant)
 start_button.pack()
 
@@ -221,8 +220,8 @@ back_button.pack()
 save_button = tk.Button(root, text="Save", command=save_state)
 save_button.pack()
 
-# Create a "Open instance" button
 open_button = tk.Button(root, text="Open instance", command=open_instance)
 open_button.pack()
 
+# Fonction permettant de maintenir la fenêtre Tkinter ouverte
 root.mainloop()
