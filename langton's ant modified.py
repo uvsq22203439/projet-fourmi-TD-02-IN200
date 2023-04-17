@@ -15,13 +15,13 @@ root.title("Langton's ant")
 
 # Créer un canvas pour dessiner la grille
 canvas = tk.Canvas(root, width=grid_size*5, height=grid_size*5)
-canvas.pack()
+canvas.grid(column = 1, rowspan = 10)
 
 # Créer la grille (une liste de listes)
 states = [[color_white for col in range(grid_size)] for row in range(grid_size)]
 
 speed_scale = tk.Scale(root, from_=1, to=100, orient=tk.HORIZONTAL)
-speed_scale.pack()
+speed_scale.grid(column = 2, row = 8)
 
 # Créer la fourmi
 ant_row = grid_size // 2
@@ -203,25 +203,26 @@ for row in range(grid_size):
 
 # Création et ajout des boutons dans le canevas    
 start_button = tk.Button(root, text="start", command=start_langtons_ant)
-start_button.pack()
+start_button.grid(column = 2, row = 1)
 
 stop_button = tk.Button(root, text="stop", command=stop_langtons_ant)
-stop_button.pack()
+stop_button.grid(column = 2, row = 2)
 
 step_button = tk.Button(root, text="step", command=step_langtons_ant)
-step_button.pack()
+step_button.grid(column = 2, row = 3)
 
 reset_button = tk.Button(root, text="reset", command=reset_langtons_ant)
-reset_button.pack()
+reset_button.grid(column = 2, row = 4)
 
 back_button = tk.Button(root, text="back", command=back_step_langtons_ant)
-back_button.pack()
+back_button.grid(column = 2, row = 5)
 
 save_button = tk.Button(root, text="Save", command=save_state)
-save_button.pack()
+save_button.grid(column = 2, row = 6)
 
 open_button = tk.Button(root, text="Open instance", command=open_instance)
-open_button.pack()
+open_button.grid(column = 2, row = 7)
+
 
 # Fonction permettant de maintenir la fenêtre Tkinter ouverte
 root.mainloop()
