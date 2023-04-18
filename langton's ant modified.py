@@ -152,6 +152,9 @@ def update_speed(*args):
     speed = int(speed_scale.get())
 speed_scale.config(command=update_speed)
 
+def quitter():
+    root.destroy()
+
 def save_state():
     # Créer un dictionnaire qui répertorie les différents états du jeu pour pouvoir sauvegarder une instance
     state_dict = {
@@ -222,6 +225,10 @@ save_button.grid(column = 2, row = 6)
 
 open_button = tk.Button(root, text="Open instance", command=open_instance)
 open_button.grid(column = 2, row = 7)
+
+quitter_button = tk.Button(root, text = "Quitter", command = quitter)
+quitter_button.grid(column = 2, row = 9)
+
 
 
 # Fonction permettant de maintenir la fenêtre Tkinter ouverte
